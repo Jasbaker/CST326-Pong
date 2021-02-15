@@ -10,9 +10,17 @@ public class Goal : MonoBehaviour
     public Text scoreR;
     public int scoreN;
     public bool gameover = false;
+    private AudioSource audioSource;
+    public AudioClip goalCollision;
+
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void OnTriggerEnter(Collider other)
     {
+        audioSource.PlayOneShot(goalCollision);
         if (this.name == "GoalL")
         {
             scoreN = int.Parse(scoreR.text);
